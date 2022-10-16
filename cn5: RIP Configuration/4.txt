@@ -1,0 +1,29 @@
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)# network 192.168.0.32
+Router(config-router)# network 192.168.0.36
+Router(config-router)# network 192.168.0.0
+Router(config-router)#^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#wr
+Building configuration...
+[OK]
+Router#
+Router# show cdp neighbor
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone
+Device ID    Local Intrfce   Holdtme    Capability   Platform    Port ID
+Router       Ser 0/2/0        147            R       C2800       Ser 0/2/1
+Router       Ser 0/2/1        149            R       C2800       Ser 0/2/1
+Switch       Fas 0/0          145            S       2960        Fas 0/3
+Router#
+
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#no auto-summary
+Router(config-router)#no network 192.168.0.32
+Router(config-router)#no network 192.168.0.36
+Router(config-router)#no network 192.168.0.0

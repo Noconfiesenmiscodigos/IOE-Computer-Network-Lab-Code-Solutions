@@ -1,0 +1,45 @@
+Router> enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router ospf 1
+Router(config-router)# network 192.168.0.32 255.255.255.252 area 0
+Router(config-router)# network 192.168.0.0 255.255.255.240 area 0
+Router(config-router)# network 192.168.0.36 255.255.255.252 area 0
+Router(config-router)#^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#wr
+Building configuration...
+[OK]
+Router#
+
+Router(config-if)#router ospf 1
+Router(config-router)#network 192.168.0.32 255.255.255.252 area 0
+Router(config-router)#network 192.168.0.0 255.255.255.252 area 0
+Router(config-router)#network 192.168.0.36 255.255.255.252 area 0
+Router(config-router)#no network 192.168.0.0 255.255.255.252 area 0
+Router(config-router)#network 192.168.0.0 255.255.255.240 area 0
+Router(config-router)#^Z
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#wr
+Building configuration...
+[OK]
+Router#
+
+Router#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     192.168.0.0/30 is subnetted, 2 subnets
+C       192.168.0.32 is directly connected, Serial0/2/0
+C       192.168.0.40 is directly connected, Serial0/2/1
